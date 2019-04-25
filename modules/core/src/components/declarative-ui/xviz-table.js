@@ -102,6 +102,8 @@ class XVIZTableComponent extends PureComponent {
   }
 
   render() {
+    console.log('JEFF: Hello from my fork');
+
     const {columns, rows} = this.state;
 
     if (!columns) {
