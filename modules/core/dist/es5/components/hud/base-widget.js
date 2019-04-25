@@ -1,9 +1,28 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -15,9 +34,9 @@ var _styled = _interopRequireDefault(require("@emotion/styled"));
 
 var _connect = _interopRequireDefault(require("../connect"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -41,7 +60,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var WrapperComponent = _styled["default"].div(function (props) {
+var WrapperComponent = _styled.default.div(function (props) {
   return _objectSpread({}, props.theme.__reset__, {
     padding: props.theme.spacingSmall,
     display: 'inline-block'
@@ -102,7 +121,7 @@ function (_PureComponent) {
           style = _this$props.style,
           children = _this$props.children;
       var streams = this.state.streams;
-      return _react["default"].createElement(WrapperComponent, {
+      return _react.default.createElement(WrapperComponent, {
         theme: theme,
         userStyle: style.wrapper
       }, children({
@@ -116,12 +135,12 @@ function (_PureComponent) {
 }(_react.PureComponent);
 
 _defineProperty(BaseWidget, "propTypes", {
-  style: _propTypes["default"].object,
-  streamNames: _propTypes["default"].object.isRequired,
-  children: _propTypes["default"].func.isRequired,
+  style: _propTypes.default.object,
+  streamNames: _propTypes.default.object.isRequired,
+  children: _propTypes.default.func.isRequired,
   // From connected log
-  streamMetadata: _propTypes["default"].object,
-  frame: _propTypes["default"].object
+  streamMetadata: _propTypes.default.object,
+  frame: _propTypes.default.object
 });
 
 _defineProperty(BaseWidget, "defaultProps", {
@@ -137,10 +156,10 @@ var getLogState = function getLogState(log, _ref2) {
   };
 };
 
-var _default = (0, _connect["default"])({
+var _default = (0, _connect.default)({
   getLogState: getLogState,
   Component: (0, _monochrome.withTheme)(BaseWidget)
 });
 
-exports["default"] = _default;
+exports.default = _default;
 //# sourceMappingURL=base-widget.js.map

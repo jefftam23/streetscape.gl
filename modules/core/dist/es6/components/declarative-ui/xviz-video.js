@@ -51,10 +51,10 @@ class BaseComponent extends PureComponent {
     }
   }
 
-  _getStreamNames(_ref) {
-    let streamMetadata = _ref.streamMetadata,
-        cameras = _ref.cameras;
-
+  _getStreamNames({
+    streamMetadata,
+    cameras
+  }) {
     if (!streamMetadata) {
       return {
         streamNames: null,
@@ -64,8 +64,8 @@ class BaseComponent extends PureComponent {
 
     const streamNames = Object.keys(streamMetadata).filter(streamName => streamMetadata[streamName] && streamMetadata[streamName].primitive_type === 'image').filter(normalizeStreamFilter(cameras)).sort();
 
-    let _ref2 = this.state || {},
-        selectedStreamName = _ref2.selectedStreamName;
+    let _ref = this.state || {},
+        selectedStreamName = _ref.selectedStreamName;
 
     if (!streamNames.includes(selectedStreamName)) {
       selectedStreamName = streamNames[0] || null;

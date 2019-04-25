@@ -132,8 +132,9 @@ export default class TrafficLightLayer extends Layer {
     /* eslint-enable max-len */
   }
 
-  draw(_ref) {
-    let uniforms = _ref.uniforms;
+  draw({
+    uniforms
+  }) {
     const sizeScale = this.props.sizeScale;
     const modelsByName = this.state.modelsByName;
     modelsByName.box.setUniforms(Object.assign({}, uniforms, {
@@ -147,7 +148,7 @@ export default class TrafficLightLayer extends Layer {
   _getModels(gl) {
     const shaders = this.getShaders();
     const box = new Model(gl, _objectSpread({
-      id: "".concat(this.props.id, "-box")
+      id: `${this.props.id}-box`
     }, shaders, {
       shaderCache: this.context.shaderCache,
       geometry: new CubeGeometry(),
@@ -158,7 +159,7 @@ export default class TrafficLightLayer extends Layer {
       }
     }));
     const lights = new Model(gl, _objectSpread({
-      id: "".concat(this.props.id, "-light")
+      id: `${this.props.id}-light`
     }, shaders, {
       shaderCache: this.context.shaderCache,
       geometry: new SphereGeometry(),

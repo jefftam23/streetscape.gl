@@ -40,8 +40,8 @@ const DEFAULT_COMPONENTS = {
 };
 
 class XVIZPanelComponent extends PureComponent {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
 
     _defineProperty(this, "_renderItem", (item, i) => {
       const _this$props = this.props,

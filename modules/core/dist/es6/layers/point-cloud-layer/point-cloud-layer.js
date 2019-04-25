@@ -73,8 +73,9 @@ export default class PointCloudLayer extends CorePointCloudLayer {
     }
   }
 
-  draw(_ref) {
-    let uniforms = _ref.uniforms;
+  draw({
+    uniforms
+  }) {
     const _this$props = this.props,
           pointSize = _this$props.pointSize,
           colorMode = _this$props.colorMode,

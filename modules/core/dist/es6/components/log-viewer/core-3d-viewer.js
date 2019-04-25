@@ -66,9 +66,10 @@ export default class Core3DViewer extends PureComponent {
       stats.reset();
     });
 
-    _defineProperty(this, "_onViewStateChange", (_ref) => {
-      let viewState = _ref.viewState,
-          oldViewState = _ref.oldViewState;
+    _defineProperty(this, "_onViewStateChange", ({
+      viewState,
+      oldViewState
+    }) => {
       const viewOffset = getViewStateOffset(oldViewState, viewState, this.props.viewOffset);
       this.props.onViewStateChange({
         viewState,
@@ -128,9 +129,10 @@ export default class Core3DViewer extends PureComponent {
     }
   }
 
-  _getStyleParser(_ref2) {
-    let metadata = _ref2.metadata,
-        xvizStyles = _ref2.xvizStyles;
+  _getStyleParser({
+    metadata,
+    xvizStyles
+  }) {
     return new XVIZStyleParser(mergeXVIZStyles(metadata && metadata.styles, xvizStyles));
   }
 
@@ -199,7 +201,7 @@ export default class Core3DViewer extends PureComponent {
 
       if (primitives && primitives.length) {
         return new XVIZLayer(_objectSpread({
-          id: "xviz-".concat(streamName)
+          id: `xviz-${streamName}`
         }, coordinateProps, {
           pickable: showTooltip || primitives[0].id,
           data: primitives,
@@ -215,7 +217,7 @@ export default class Core3DViewer extends PureComponent {
 
       if (stream.pointCloud) {
         return new XVIZLayer(_objectSpread({
-          id: "xviz-".concat(streamName)
+          id: `xviz-${streamName}`
         }, coordinateProps, {
           pickable: showTooltip,
           data: stream.pointCloud,
@@ -252,11 +254,11 @@ export default class Core3DViewer extends PureComponent {
     })];
   }
 
-  _layerFilter(_ref3) {
-    let layer = _ref3.layer,
-        viewport = _ref3.viewport,
-        isPicking = _ref3.isPicking;
-
+  _layerFilter({
+    layer,
+    viewport,
+    isPicking
+  }) {
     if (viewport.id === 'driver') {
       return layer.id !== 'car';
     }

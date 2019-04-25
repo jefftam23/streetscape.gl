@@ -22,13 +22,13 @@
 import { Texture2D } from '@luma.gl/core';
 const CANVAS_SIZE = 256;
 
-function drawArrow(ctx, _ref) {
-  let x = _ref.x,
-      y = _ref.y,
-      size = _ref.size,
-      strokeWidth = _ref.strokeWidth,
-      _ref$scaleX = _ref.scaleX,
-      scaleX = _ref$scaleX === void 0 ? 1 : _ref$scaleX;
+function drawArrow(ctx, {
+  x,
+  y,
+  size,
+  strokeWidth,
+  scaleX = 1
+}) {
   const halfSize = size / 2;
   const headSize = size / 4;
 

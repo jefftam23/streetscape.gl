@@ -38,8 +38,8 @@ const TooltipContainer = styled.div(props => _objectSpread({}, props.theme.__res
 const KEY_BLACKLIST = new Set(['vertices', 'base', 'style', 'state', 'index', 'id', 'object_id']);
 
 class HoverTooltip extends PureComponent {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
 
     _defineProperty(this, "_renderContent", info => {
       const objectId = info.object.base && info.object.base.object_id;

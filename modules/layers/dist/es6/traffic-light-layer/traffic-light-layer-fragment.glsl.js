@@ -17,5 +17,32 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-export default "\n#define SHADER_NAME traffic-light-layer-fs\n\n#ifdef GL_ES\nprecision highp float;\n#endif\n\nuniform bool useInstanceColor;\nuniform sampler2D lightShapeTexture;\n\nvarying vec4 vColor;\nvarying vec2 vTexCoord;\n\nvoid main(void) {\n  if (useInstanceColor) {\n    vec4 mask = texture2D(lightShapeTexture, vTexCoord);\n    gl_FragColor = vec4(vColor.rgb * mask.rgb, vColor.a);\n  } else {\n    gl_FragColor = vColor;\n  }\n\n  // use highlight color if this fragment belongs to the selected object.\n  gl_FragColor = picking_filterHighlightColor(gl_FragColor);\n\n  // use picking color if rendering to picking FBO.\n  gl_FragColor = picking_filterPickingColor(gl_FragColor);\n}\n";
+export default `
+#define SHADER_NAME traffic-light-layer-fs
+
+#ifdef GL_ES
+precision highp float;
+#endif
+
+uniform bool useInstanceColor;
+uniform sampler2D lightShapeTexture;
+
+varying vec4 vColor;
+varying vec2 vTexCoord;
+
+void main(void) {
+  if (useInstanceColor) {
+    vec4 mask = texture2D(lightShapeTexture, vTexCoord);
+    gl_FragColor = vec4(vColor.rgb * mask.rgb, vColor.a);
+  } else {
+    gl_FragColor = vColor;
+  }
+
+  // use highlight color if this fragment belongs to the selected object.
+  gl_FragColor = picking_filterHighlightColor(gl_FragColor);
+
+  // use picking color if rendering to picking FBO.
+  gl_FragColor = picking_filterPickingColor(gl_FragColor);
+}
+`;
 //# sourceMappingURL=traffic-light-layer-fragment.glsl.js.map

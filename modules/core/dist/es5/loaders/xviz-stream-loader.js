@@ -1,10 +1,29 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.updateSocketRequestParams = updateSocketRequestParams;
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _assert = _interopRequireDefault(require("assert"));
 
@@ -14,9 +33,9 @@ var _xvizWebsocketLoader = _interopRequireDefault(require("./xviz-websocket-load
 
 var rangeUtils = _interopRequireWildcard(require("../utils/buffer-range"));
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -28,8 +47,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
 
 function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
@@ -39,6 +56,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
@@ -61,7 +80,7 @@ function getSocketRequestParams(options) {
       bufferLength = _options$bufferLength === void 0 ? DEFAULT_BUFFER_LENGTH[(0, _parser.getXVIZConfig)().TIMESTAMP_FORMAT] : _options$bufferLength; // set duration overrides & defaults
 
   var duration = options.duration || serverConfig.defaultLogLength;
-  (0, _assert["default"])(logGuid && duration);
+  (0, _assert.default)(logGuid && duration);
 
   var queryParams = _objectSpread({}, serverConfig.queryParams, {
     log: logGuid,
@@ -97,7 +116,7 @@ function updateSocketRequestParams(timestamp, metadata, bufferLength, bufferRang
 
   if (!Number.isFinite(totalDuration)) {
     // If there is no start/end time in metadata, buffer length must be supplied
-    (0, _assert["default"])(bufferLength, 'bufferLength is invalid');
+    (0, _assert.default)(bufferLength, 'bufferLength is invalid');
   }
 
   if (chunkSize >= totalDuration) {
@@ -157,14 +176,14 @@ function (_XVIZWebsocketLoader) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(XVIZStreamLoader).call(this, options)); // Construct websocket connection details from parameters
 
-    _defineProperty(_assertThisInitialized(_this), "_onOpen", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onOpen", function () {
       if (_this.lastRequest) {
         _this.xvizHandler.transformLog(_this.lastRequest);
       }
     });
 
     _this.requestParams = getSocketRequestParams(options);
-    (0, _assert["default"])(_this.requestParams.bufferLength, 'bufferLength must be provided');
+    (0, _assert.default)(_this.requestParams.bufferLength, 'bufferLength must be provided');
     _this.retrySettings = {
       retries: _this.requestParams.retryAttempts,
       minTimeout: 500,
@@ -240,7 +259,7 @@ function (_XVIZWebsocketLoader) {
   }]);
 
   return XVIZStreamLoader;
-}(_xvizWebsocketLoader["default"]);
+}(_xvizWebsocketLoader.default);
 
-exports["default"] = XVIZStreamLoader;
+exports.default = XVIZStreamLoader;
 //# sourceMappingURL=xviz-stream-loader.js.map

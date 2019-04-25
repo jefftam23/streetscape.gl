@@ -23,11 +23,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 // THE SOFTWARE.
 import { XVIZObject } from '@xviz/parser'; // Toggle a specific state of objects
 
-export function setObjectState(objectStates, _ref) {
-  let stateName = _ref.stateName,
-      id = _ref.id,
-      value = _ref.value;
-
+export function setObjectState(objectStates, {
+  stateName,
+  id,
+  value
+}) {
   const state = _objectSpread({}, objectStates[stateName]);
 
   const xvizObject = XVIZObject.get(id);

@@ -31,10 +31,11 @@ const defaultProps = _objectSpread({}, IconLayer.defaultProps, {
 });
 
 export default class SignLayer extends IconLayer {
-  updateState(_ref) {
-    let oldProps = _ref.oldProps,
-        props = _ref.props,
-        changeFlags = _ref.changeFlags;
+  updateState({
+    oldProps,
+    props,
+    changeFlags
+  }) {
     super.updateState({
       props,
       oldProps,

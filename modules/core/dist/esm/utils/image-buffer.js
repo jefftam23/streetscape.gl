@@ -109,7 +109,7 @@ function () {
 
           if (bufferedFrames.length === 0 || frame.time < bufferedFrames[0].time || frame.time > bufferedFrames[bufferedFrames.length - 1].time) {
             this.imageDeleter(buffer.get(frame));
-            buffer["delete"](frame);
+            buffer.delete(frame);
           }
         } // Load images for frames in the buffer
 
@@ -118,8 +118,8 @@ function () {
         _iteratorError = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-            _iterator["return"]();
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
           }
         } finally {
           if (_didIteratorError) {

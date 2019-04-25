@@ -1,9 +1,28 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -37,9 +56,9 @@ var _stats = _interopRequireDefault(require("../../utils/stats"));
 
 var _constants2 = require("./constants");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -55,11 +74,11 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -81,14 +100,14 @@ function (_PureComponent) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Core3DViewer).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_this), "_onMetrics", function (deckMetrics) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onMetrics", function (deckMetrics) {
       if (_this.props.debug) {
         var metrics = {
           fps: deckMetrics.fps,
           redraw: deckMetrics.redraw || 0
         };
 
-        var table = _stats["default"].getTable();
+        var table = _stats.default.getTable();
 
         for (var key in table) {
           metrics[key] = table[key].total;
@@ -97,10 +116,10 @@ function (_PureComponent) {
         _this.props.debug(metrics);
       }
 
-      _stats["default"].reset();
+      _stats.default.reset();
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_onViewStateChange", function (_ref) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onViewStateChange", function (_ref) {
       var viewState = _ref.viewState,
           oldViewState = _ref.oldViewState;
       var viewOffset = (0, _viewport.getViewStateOffset)(oldViewState, viewState, _this.props.viewOffset);
@@ -111,14 +130,14 @@ function (_PureComponent) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_onLayerHover", function (info, evt) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onLayerHover", function (info, evt) {
       var objectId = info && info.object && info.object.id;
       _this.isHovering = Boolean(objectId);
 
       _this.props.onHover(info, evt);
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_onLayerClick", function (info, evt) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onLayerClick", function (info, evt) {
       var isRightClick = evt.which === 3;
 
       if (isRightClick) {
@@ -128,7 +147,7 @@ function (_PureComponent) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_getCursor", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_getCursor", function () {
       return _this.isHovering ? 'pointer' : 'crosshair';
     });
 
@@ -163,7 +182,7 @@ function (_PureComponent) {
       }
 
       if (this.props.frame !== nextProps.frame) {
-        _stats["default"].get('frame-update').incrementCount();
+        _stats.default.get('frame-update').incrementCount();
       }
     }
   }, {
@@ -244,7 +263,7 @@ function (_PureComponent) {
         var primitives = stream.features || stream;
 
         if (primitives && primitives.length) {
-          return new _xvizLayer["default"](_objectSpread({
+          return new _xvizLayer.default(_objectSpread({
             id: "xviz-".concat(streamName)
           }, coordinateProps, {
             pickable: showTooltip || primitives[0].id,
@@ -260,7 +279,7 @@ function (_PureComponent) {
         }
 
         if (stream.pointCloud) {
-          return new _xvizLayer["default"](_objectSpread({
+          return new _xvizLayer.default(_objectSpread({
             id: "xviz-".concat(streamName)
           }, coordinateProps, {
             pickable: showTooltip,
@@ -347,7 +366,7 @@ function (_PureComponent) {
           viewMode = _this$props4.viewMode,
           showMap = _this$props4.showMap;
       var styleParser = this.state.styleParser;
-      return _react["default"].createElement(_react2["default"], {
+      return _react.default.createElement(_react2.default, {
         width: "100%",
         height: "100%",
         effects: [_constants2.LIGHTS],
@@ -360,13 +379,13 @@ function (_PureComponent) {
         onClick: this._onLayerClick,
         onViewStateChange: this._onViewStateChange,
         _onMetrics: this._onMetrics
-      }, showMap && _react["default"].createElement(_reactMapGl.StaticMap, {
+      }, showMap && _react.default.createElement(_reactMapGl.StaticMap, {
         reuseMap: true,
         attributionControl: false,
         mapboxApiAccessToken: mapboxApiAccessToken,
         mapStyle: mapStyle,
         visible: frame && frame.origin && !viewMode.firstPerson
-      }), _react["default"].createElement(_objectLabelsOverlay["default"], {
+      }), _react.default.createElement(_objectLabelsOverlay.default, {
         objectSelection: objectStates.selected,
         frame: frame,
         metadata: metadata,
@@ -381,35 +400,35 @@ function (_PureComponent) {
   return Core3DViewer;
 }(_react.PureComponent);
 
-exports["default"] = Core3DViewer;
+exports.default = Core3DViewer;
 
 _defineProperty(Core3DViewer, "propTypes", {
   // Props from loader
-  frame: _propTypes["default"].object,
-  metadata: _propTypes["default"].object,
+  frame: _propTypes.default.object,
+  metadata: _propTypes.default.object,
   // Rendering options
-  showMap: _propTypes["default"].bool,
-  showTooltip: _propTypes["default"].bool,
-  mapboxApiAccessToken: _propTypes["default"].string,
-  mapStyle: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].string]),
-  xvizStyles: _propTypes["default"].object,
-  car: _propTypes["default"].object,
-  viewMode: _propTypes["default"].object,
-  streamFilter: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].array, _propTypes["default"].object, _propTypes["default"].func]),
-  customLayers: _propTypes["default"].array,
-  renderObjectLabel: _propTypes["default"].func,
-  getTransformMatrix: _propTypes["default"].func,
+  showMap: _propTypes.default.bool,
+  showTooltip: _propTypes.default.bool,
+  mapboxApiAccessToken: _propTypes.default.string,
+  mapStyle: _propTypes.default.oneOfType([_propTypes.default.object, _propTypes.default.string]),
+  xvizStyles: _propTypes.default.object,
+  car: _propTypes.default.object,
+  viewMode: _propTypes.default.object,
+  streamFilter: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.array, _propTypes.default.object, _propTypes.default.func]),
+  customLayers: _propTypes.default.array,
+  renderObjectLabel: _propTypes.default.func,
+  getTransformMatrix: _propTypes.default.func,
   // Callbacks
-  onHover: _propTypes["default"].func,
-  onClick: _propTypes["default"].func,
-  onContextMenu: _propTypes["default"].func,
-  onViewStateChange: _propTypes["default"].func,
+  onHover: _propTypes.default.func,
+  onClick: _propTypes.default.func,
+  onContextMenu: _propTypes.default.func,
+  onViewStateChange: _propTypes.default.func,
   // Debug info listener
-  debug: _propTypes["default"].func,
+  debug: _propTypes.default.func,
   // States
-  viewState: _propTypes["default"].object,
-  viewOffset: _propTypes["default"].object,
-  objectStates: _propTypes["default"].object
+  viewState: _propTypes.default.object,
+  viewOffset: _propTypes.default.object,
+  objectStates: _propTypes.default.object
 });
 
 _defineProperty(Core3DViewer, "defaultProps", {

@@ -1,9 +1,28 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _parser = require("@xviz/parser");
 
@@ -13,7 +32,7 @@ var _createSelector = _interopRequireDefault(require("../utils/create-selector")
 
 var _stats = _interopRequireDefault(require("../utils/stats"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
@@ -87,15 +106,15 @@ function () {
       return _this.get('dataVersion');
     });
 
-    _defineProperty(this, "_getStreams", (0, _createSelector["default"])(this, this._getDataVersion, function () {
+    _defineProperty(this, "_getStreams", (0, _createSelector.default)(this, this._getDataVersion, function () {
       return _this._getDataByStream();
     }));
 
-    _defineProperty(this, "getBufferedTimeRanges", (0, _createSelector["default"])(this, this._getDataVersion, function () {
+    _defineProperty(this, "getBufferedTimeRanges", (0, _createSelector.default)(this, this._getDataVersion, function () {
       return _this._getBufferedTimeRanges();
     }));
 
-    _defineProperty(this, "getStreams", (0, _createSelector["default"])(this, [this.getStreamSettings, this._getStreams, this._getDataVersion], function (streamSettings, streams) {
+    _defineProperty(this, "getStreams", (0, _createSelector.default)(this, [this.getStreamSettings, this._getStreams, this._getDataVersion], function (streamSettings, streams) {
       if (!streamSettings || !streams) {
         return streams;
       }
@@ -111,23 +130,23 @@ function () {
       return result;
     }));
 
-    _defineProperty(this, "getBufferStartTime", (0, _createSelector["default"])(this, this.getCurrentTime, function () {
+    _defineProperty(this, "getBufferStartTime", (0, _createSelector.default)(this, this.getCurrentTime, function () {
       return _this._getBufferStartTime();
     }));
 
-    _defineProperty(this, "getBufferEndTime", (0, _createSelector["default"])(this, this.getCurrentTime, function () {
+    _defineProperty(this, "getBufferEndTime", (0, _createSelector.default)(this, this.getCurrentTime, function () {
       return _this._getBufferEndTime();
     }));
 
-    _defineProperty(this, "getLogStartTime", (0, _createSelector["default"])(this, this.getMetadata, function (metadata) {
+    _defineProperty(this, "getLogStartTime", (0, _createSelector.default)(this, this.getMetadata, function (metadata) {
       return _this._getLogStartTime(metadata);
     }));
 
-    _defineProperty(this, "getLogEndTime", (0, _createSelector["default"])(this, this.getMetadata, function (metadata) {
+    _defineProperty(this, "getLogEndTime", (0, _createSelector.default)(this, this.getMetadata, function (metadata) {
       return _this._getLogEndTime(metadata);
     }));
 
-    _defineProperty(this, "getCurrentFrame", (0, _createSelector["default"])(this, [this.getStreamSettings, this.getCurrentTime, this.getLookAhead, this._getDataVersion], // `dataVersion` is only needed to trigger recomputation.
+    _defineProperty(this, "getCurrentFrame", (0, _createSelector.default)(this, [this.getStreamSettings, this.getCurrentTime, this.getLookAhead, this._getDataVersion], // `dataVersion` is only needed to trigger recomputation.
     // The logSynchronizer has access to the timeslices.
     function (streamSettings, timestamp, lookAhead) {
       var logSynchronizer = _this.logSynchronizer;
@@ -210,8 +229,8 @@ function () {
           _iteratorError = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-              _iterator["return"]();
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
             }
           } finally {
             if (_didIteratorError) {
@@ -221,7 +240,7 @@ function () {
         }
       }
 
-      _stats["default"].get("loader-".concat(eventType)).incrementCount();
+      _stats.default.get("loader-".concat(eventType)).incrementCount();
     }
   }, {
     key: "subscribe",
@@ -391,5 +410,5 @@ function () {
   return XVIZLoaderInterface;
 }();
 
-exports["default"] = XVIZLoaderInterface;
+exports.default = XVIZLoaderInterface;
 //# sourceMappingURL=xviz-loader-interface.js.map

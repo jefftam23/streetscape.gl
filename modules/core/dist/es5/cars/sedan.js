@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _utils = require("./utils");
 
@@ -62,5 +62,5 @@ var _default = function _default() {
   });
 };
 
-exports["default"] = _default;
+exports.default = _default;
 //# sourceMappingURL=sedan.js.map

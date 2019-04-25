@@ -47,10 +47,11 @@ class BaseWidget extends PureComponent {
     }
   }
 
-  _extractStreams(_ref) {
-    let streamNames = _ref.streamNames,
-        streamMetadata = _ref.streamMetadata,
-        frame = _ref.frame;
+  _extractStreams({
+    streamNames,
+    streamMetadata,
+    frame
+  }) {
     const result = {};
 
     for (const key in streamNames) {
@@ -96,8 +97,9 @@ _defineProperty(BaseWidget, "defaultProps", {
   style: {}
 });
 
-const getLogState = (log, _ref2) => {
-  let streamName = _ref2.streamName;
+const getLogState = (log, {
+  streamName
+}) => {
   const metadata = log.getMetadata();
   return {
     streamMetadata: metadata && metadata.streams,

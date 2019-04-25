@@ -83,31 +83,27 @@ const Warning = styled.span(props => _objectSpread({
 }, evaluateStyle(props.userStyle, props)));
 
 function getTransform(centerX, centerY, angle) {
-  return "translate(".concat(centerX, " ").concat(centerY, ") rotate(").concat(angle, ") translate(").concat(-centerX, " ").concat(-centerY, ")");
+  return `translate(${centerX} ${centerY}) rotate(${angle}) translate(${-centerX} ${-centerY})`;
 }
 
-function formatValue(value) {
-  let precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3;
-  let transformValue = arguments.length > 2 ? arguments[2] : undefined;
-
+function formatValue(value, precision = 3, transformValue) {
   if (!Number.isFinite(value)) {
     return '';
   }
 
   value = transformValue(value);
   const digits = value ? Math.max(1, Math.floor(Math.log10(Math.abs(value)) + 1)) : 1;
-  return "".concat(value.toFixed(Math.max(0, precision - digits)));
+  return `${value.toFixed(Math.max(0, precision - digits))}`;
 }
 
 export default class MeterWidget extends PureComponent {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
 
-    _defineProperty(this, "_render", (_ref) => {
-      let theme = _ref.theme,
-          streams = _ref.streams;
-      return React.createElement("div", null, this._renderGauge(streams.cmd, streams.msr, theme), this._renderMetric(streams.cmd, streams.msr, theme));
-    });
+    _defineProperty(this, "_render", ({
+      theme,
+      streams
+    }) => React.createElement("div", null, this._renderGauge(streams.cmd, streams.msr, theme), this._renderMetric(streams.cmd, streams.msr, theme)));
   }
 
   _renderGauge(cmdData, msrData, theme) {
@@ -138,7 +134,7 @@ export default class MeterWidget extends PureComponent {
       width: (r + padding) * 2,
       height: r + padding * 2
     }, React.createElement(GuageArc, {
-      d: "M ".concat(padding + w / 2, " ").concat(r + padding, " a ").concat(r - w / 2, " ").concat(r - w / 2, " 1 1 1 ").concat(r * 2 - w, " 0"),
+      d: `M ${padding + w / 2} ${r + padding} a ${r - w / 2} ${r - w / 2} 1 1 1 ${r * 2 - w} 0`,
       fill: "none",
       strokeWidth: w,
       theme: theme,
@@ -154,8 +150,8 @@ export default class MeterWidget extends PureComponent {
     })), cmdData && React.createElement("g", {
       transform: cmdTransform
     }, React.createElement(CmdMarker, {
-      transform: "translate(".concat(r + padding, " ").concat(padding, ")"),
-      d: "M0,".concat(w, " L").concat(-w / 2, ",0 L").concat(w / 2, ",0z"),
+      transform: `translate(${r + padding} ${padding})`,
+      d: `M0,${w} L${-w / 2},0 L${w / 2},0z`,
       theme: theme,
       userStyle: style.cmdMarker
     })), msrData && React.createElement("g", {

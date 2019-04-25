@@ -49,11 +49,11 @@ function getTimeSeriesForStream(streamName, metadata, stream, target) {
  */
 
 
-export function getTimeSeries(_ref) {
-  let _ref$metadata = _ref.metadata,
-      metadata = _ref$metadata === void 0 ? {} : _ref$metadata,
-      streamNames = _ref.streamNames,
-      streams = _ref.streams;
+export function getTimeSeries({
+  metadata = {},
+  streamNames,
+  streams
+}) {
   const timeSeries = {
     isLoading: true,
     data: {}

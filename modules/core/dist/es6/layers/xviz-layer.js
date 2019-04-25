@@ -128,8 +128,7 @@ const getStylesheetProperty = (context, propertyName, objectState) => context.st
 /* eslint-disable complexity */
 
 
-function getProperty(context, propertyName) {
-  let f = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : EMPTY_OBJECT;
+function getProperty(context, propertyName, f = EMPTY_OBJECT) {
   let objectState = f; // Handle XVIZ v1 color override where our semantic color mapping
   // differs from current OCS colors.  In XVIZ v2 we should be aligned.
 
@@ -255,10 +254,11 @@ export default class XVIZLayer extends CompositeLayer {
     return data.type;
   }
 
-  updateState(_ref) {
-    let props = _ref.props,
-        oldProps = _ref.oldProps,
-        changeFlags = _ref.changeFlags;
+  updateState({
+    props,
+    oldProps,
+    changeFlags
+  }) {
     let type = this.state.type;
 
     if (changeFlags.dataChanged) {

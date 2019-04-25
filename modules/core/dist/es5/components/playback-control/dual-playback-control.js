@@ -1,9 +1,28 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -13,9 +32,9 @@ var _monochrome = require("@streetscape.gl/monochrome");
 
 var _styled = _interopRequireDefault(require("@emotion/styled"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -41,7 +60,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var LookAheadContainer = _styled["default"].div(function (props) {
+var LookAheadContainer = _styled.default.div(function (props) {
   return _objectSpread({
     display: 'flex',
     alignItems: 'center',
@@ -52,7 +71,7 @@ var LookAheadContainer = _styled["default"].div(function (props) {
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var LookAheadTimestamp = _styled["default"].span(function (props) {
+var LookAheadTimestamp = _styled.default.span(function (props) {
   return _objectSpread({
     marginLeft: props.theme.spacingNormal,
     marginRight: props.theme.spacingNormal
@@ -98,15 +117,15 @@ function (_PureComponent) {
           formatLookAhead = _this$props.formatLookAhead,
           maxLookAhead = _this$props.maxLookAhead,
           step = _this$props.step;
-      return _react["default"].createElement(LookAheadContainer, {
+      return _react.default.createElement(LookAheadContainer, {
         theme: theme,
         isPlaying: isPlaying,
         userStyle: style.lookAhead
-      }, _react["default"].createElement(LookAheadTimestamp, {
+      }, _react.default.createElement(LookAheadTimestamp, {
         theme: theme,
         isPlaying: isPlaying,
         userStyle: style.lookAheadTimestamp
-      }, "Look ahead: ", formatLookAhead(lookAhead)), _react["default"].createElement(_monochrome.Slider, {
+      }, "Look ahead: ", formatLookAhead(lookAhead)), _react.default.createElement(_monochrome.Slider, {
         style: style.lookAheadSlider,
         value: lookAhead,
         min: 0,
@@ -137,9 +156,9 @@ function (_PureComponent) {
           userStyle: style.lookAheadMarker
         })
       });
-      return _react["default"].createElement(_monochrome.PlaybackControl, _extends({}, this.props, {
+      return _react.default.createElement(_monochrome.PlaybackControl, _extends({}, this.props, {
         markers: markers
-      }), children, _react["default"].createElement("div", {
+      }), children, _react.default.createElement("div", {
         style: {
           flexGrow: 1
         }
@@ -151,10 +170,10 @@ function (_PureComponent) {
 }(_react.PureComponent);
 
 _defineProperty(DualPlaybackControl, "propTypes", _objectSpread({}, _monochrome.PlaybackControl.propTypes, {
-  lookAhead: _propTypes["default"].number,
-  maxLookAhead: _propTypes["default"].number,
-  formatLookAhead: _propTypes["default"].func,
-  onLookAheadChange: _propTypes["default"].func
+  lookAhead: _propTypes.default.number,
+  maxLookAhead: _propTypes.default.number,
+  formatLookAhead: _propTypes.default.func,
+  onLookAheadChange: _propTypes.default.func
 }));
 
 _defineProperty(DualPlaybackControl, "defaultProps", _objectSpread({}, _monochrome.PlaybackControl.defaultProps, {
@@ -173,5 +192,5 @@ _defineProperty(DualPlaybackControl, "defaultProps", _objectSpread({}, _monochro
 var ThemedDualPlaybackControl = (0, _monochrome.withTheme)(DualPlaybackControl);
 ThemedDualPlaybackControl.formatTimeCode = _monochrome.PlaybackControl.formatTimeCode;
 var _default = ThemedDualPlaybackControl;
-exports["default"] = _default;
+exports.default = _default;
 //# sourceMappingURL=dual-playback-control.js.map

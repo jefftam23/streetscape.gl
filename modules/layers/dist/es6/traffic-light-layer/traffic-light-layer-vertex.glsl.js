@@ -17,5 +17,58 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-export default "#define SHADER_NAME traffic-light-layer-vs\n\nuniform vec3 modelScale;\nuniform vec3 modelTranslate;\nuniform bool useInstanceColor;\nuniform float opacity;\n\n// Primitive attributes\nattribute vec3 positions;\nattribute vec3 normals;\nattribute vec2 texCoords;\n\n// Instance attributes\nattribute vec3 instancePositions;\nattribute vec2 instancePositions64xyLow;\nattribute float instanceAngles;\nattribute float instanceShapes;\nattribute vec3 instanceColors;\nattribute float instanceStates;\nattribute vec3 instancePickingColors;\n\n// Outputs to fragment shader\nvarying vec4 vColor;\nvarying vec2 vTexCoord;\n\n// Used for geometry that does not have color\nconst vec4 defaultColor = vec4(0.05, 0.05, 0.05, 1.0);\n\nvoid main(void) {\n  float angle = instanceAngles + PI;\n  mat2 rotationMatrix = mat2(cos(angle), sin(angle), -sin(angle), cos(angle));\n\n  vec3 offset = (positions + modelTranslate) * modelScale;\n  offset.xy = rotationMatrix * offset.xy;\n  offset = project_size(offset);\n  vec3 normal_commonspace = project_normal(vec3(rotationMatrix * normals.xy, normals.z));\n\n  vec4 position_commonpace;\n  gl_Position = project_position_to_clipspace(instancePositions, instancePositions64xyLow, offset, position_commonpace);\n\n  if (useInstanceColor) {\n    float ownLight = instanceStates;\n    vColor = vec4(instanceColors.rgb * ownLight / 255.0, opacity);\n  } else {\n    vColor = vec4(defaultColor.rgb, defaultColor.a * opacity);\n  }\n  vColor.rgb = lighting_getLightColor(vColor.rgb, project_uCameraPosition, position_commonpace.xyz, normal_commonspace);\n\n  vTexCoord = vec2((1.0 - texCoords.y + instanceShapes) / 4.0, texCoords.x);\n\n  picking_setPickingColor(instancePickingColors);\n}\n";
+export default `\
+#define SHADER_NAME traffic-light-layer-vs
+
+uniform vec3 modelScale;
+uniform vec3 modelTranslate;
+uniform bool useInstanceColor;
+uniform float opacity;
+
+// Primitive attributes
+attribute vec3 positions;
+attribute vec3 normals;
+attribute vec2 texCoords;
+
+// Instance attributes
+attribute vec3 instancePositions;
+attribute vec2 instancePositions64xyLow;
+attribute float instanceAngles;
+attribute float instanceShapes;
+attribute vec3 instanceColors;
+attribute float instanceStates;
+attribute vec3 instancePickingColors;
+
+// Outputs to fragment shader
+varying vec4 vColor;
+varying vec2 vTexCoord;
+
+// Used for geometry that does not have color
+const vec4 defaultColor = vec4(0.05, 0.05, 0.05, 1.0);
+
+void main(void) {
+  float angle = instanceAngles + PI;
+  mat2 rotationMatrix = mat2(cos(angle), sin(angle), -sin(angle), cos(angle));
+
+  vec3 offset = (positions + modelTranslate) * modelScale;
+  offset.xy = rotationMatrix * offset.xy;
+  offset = project_size(offset);
+  vec3 normal_commonspace = project_normal(vec3(rotationMatrix * normals.xy, normals.z));
+
+  vec4 position_commonpace;
+  gl_Position = project_position_to_clipspace(instancePositions, instancePositions64xyLow, offset, position_commonpace);
+
+  if (useInstanceColor) {
+    float ownLight = instanceStates;
+    vColor = vec4(instanceColors.rgb * ownLight / 255.0, opacity);
+  } else {
+    vColor = vec4(defaultColor.rgb, defaultColor.a * opacity);
+  }
+  vColor.rgb = lighting_getLightColor(vColor.rgb, project_uCameraPosition, position_commonpace.xyz, normal_commonspace);
+
+  vTexCoord = vec2((1.0 - texCoords.y + instanceShapes) / 4.0, texCoords.x);
+
+  picking_setPickingColor(instancePickingColors);
+}
+`;
 //# sourceMappingURL=traffic-light-layer-vertex.glsl.js.map

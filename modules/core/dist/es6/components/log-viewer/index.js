@@ -39,9 +39,10 @@ class LogViewer extends PureComponent {
   constructor(props) {
     super(props);
 
-    _defineProperty(this, "_onViewStateChange", (_ref) => {
-      let viewState = _ref.viewState,
-          viewOffset = _ref.viewOffset;
+    _defineProperty(this, "_onViewStateChange", ({
+      viewState,
+      viewOffset
+    }) => {
       this.setState({
         viewState,
         viewOffset

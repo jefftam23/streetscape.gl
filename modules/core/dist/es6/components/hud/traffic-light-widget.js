@@ -50,12 +50,13 @@ const LightComponent = styled.div(props => _objectSpread({
   background: props.isOn ? COLORS[props.color] : 'none'
 }, evaluateStyle(props.userStyle, props)));
 export default class TrafficLightWidget extends PureComponent {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
 
-    _defineProperty(this, "_render", (_ref) => {
-      let theme = _ref.theme,
-          streams = _ref.streams;
+    _defineProperty(this, "_render", ({
+      theme,
+      streams
+    }) => {
       const _this$props = this.props,
             transformValue = _this$props.transformValue,
             style = _this$props.style;

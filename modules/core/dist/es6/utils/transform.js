@@ -31,9 +31,7 @@ import { addMetersToLngLat } from 'viewport-mercator-project';
 import { COORDINATE } from '../constants'; // keep in sync with core-3d-viewer.js
 
 const DEFAULT_ORIGIN = [0, 0, 0];
-export function resolveCoordinateTransform(frame) {
-  let streamMetadata = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  let getTransformMatrix = arguments.length > 2 ? arguments[2] : undefined;
+export function resolveCoordinateTransform(frame, streamMetadata = {}, getTransformMatrix) {
   const origin = frame.origin,
         _frame$transforms = frame.transforms,
         transforms = _frame$transforms === void 0 ? {} : _frame$transforms,
@@ -81,16 +79,11 @@ export function resolveCoordinateTransform(frame) {
     modelMatrix
   };
 }
-export function positionToLngLat(_ref, _ref2) {
-  let _ref3 = _slicedToArray(_ref, 3),
-      x = _ref3[0],
-      y = _ref3[1],
-      z = _ref3[2];
-
-  let coordinateSystem = _ref2.coordinateSystem,
-      coordinateOrigin = _ref2.coordinateOrigin,
-      modelMatrix = _ref2.modelMatrix;
-
+export function positionToLngLat([x, y, z], {
+  coordinateSystem,
+  coordinateOrigin,
+  modelMatrix
+}) {
   if (modelMatrix) {
     var _transformVector = new Matrix4(modelMatrix).transformVector([x, y, z, 1]);
 

@@ -18,10 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 // The default mesh is only half a car. Flip Y and append to the vertices.
-export function mirrorMesh(_ref) {
-  let indices = _ref.indices,
-      positions = _ref.positions,
-      normals = _ref.normals;
+export function mirrorMesh({
+  indices,
+  positions,
+  normals
+}) {
   const indexSize = indices.length;
   const vertexSize = positions.length;
   const vertexCount = vertexSize / 3;

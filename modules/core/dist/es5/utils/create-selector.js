@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = createLogSelector;
+exports.default = createLogSelector;
 
 var _reselect = require("reselect");
 

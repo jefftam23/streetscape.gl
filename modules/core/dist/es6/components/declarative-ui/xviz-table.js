@@ -38,11 +38,11 @@ class XVIZTableComponent extends PureComponent {
     }
   }
 
-  _formatData(_ref) {
-    let columns = _ref.columns,
-        nodes = _ref.nodes,
-        displayObjectId = _ref.displayObjectId;
-
+  _formatData({
+    columns,
+    nodes,
+    displayObjectId
+  }) {
     if (!columns || !nodes) {
       return {
         columns: null
@@ -144,14 +144,12 @@ _defineProperty(XVIZTableComponent, "defaultProps", {
   height: 400,
   style: {},
   indentSize: 12,
-  renderHeader: (_ref2) => {
-    let column = _ref2.column;
-    return column.name;
-  },
-  renderCell: (_ref3) => {
-    let value = _ref3.value;
-    return value === null ? null : String(value);
-  }
+  renderHeader: ({
+    column
+  }) => column.name,
+  renderCell: ({
+    value
+  }) => value === null ? null : String(value)
 });
 
 const getLogState = (log, ownProps) => {

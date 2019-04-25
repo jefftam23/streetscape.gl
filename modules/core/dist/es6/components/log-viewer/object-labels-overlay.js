@@ -26,11 +26,10 @@ import { _MapContext as MapContext } from 'react-map-gl';
 import PerspectivePopup from './perspective-popup';
 import { resolveCoordinateTransform, positionToLngLat } from '../../utils/transform';
 
-const renderDefaultObjectLabel = (_ref) => {
-  let id = _ref.id,
-      isSelected = _ref.isSelected;
-  return isSelected && React.createElement("div", null, "ID: ", id);
-};
+const renderDefaultObjectLabel = ({
+  id,
+  isSelected
+}) => isSelected && React.createElement("div", null, "ID: ", id);
 
 export default class ObjectLabelsOverlay extends PureComponent {
   constructor(props) {

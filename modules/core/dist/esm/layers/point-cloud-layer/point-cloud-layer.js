@@ -1,3 +1,22 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44,12 +63,12 @@ import vs from './point-cloud-layer-vertex.glsl';
 /* eslint-disable camelcase */
 
 var COLOR_MODE = {
-  "default": 0,
+  default: 0,
   elevation: 1,
   distance_to_vehicle: 2
 };
 var COLOR_DOMAIN = {
-  "default": [0, 0],
+  default: [0, 0],
   elevation: [0, 3],
   distance_to_vehicle: [0, 60]
 };
@@ -124,8 +143,8 @@ function (_CorePointCloudLayer) {
       this.state.model.setUniforms(Object.assign({}, uniforms, {
         pointSize: pointSize,
         colorSize: colorSize,
-        colorMode: COLOR_MODE[colorMode] || COLOR_MODE["default"],
-        colorDomain: colorDomain || COLOR_DOMAIN[colorMode] || COLOR_DOMAIN["default"],
+        colorMode: COLOR_MODE[colorMode] || COLOR_MODE.default,
+        colorDomain: colorDomain || COLOR_DOMAIN[colorMode] || COLOR_DOMAIN.default,
         vehicleDistanceTransform: vehicleDistanceTransform
       })).draw();
     }

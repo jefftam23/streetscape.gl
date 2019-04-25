@@ -17,5 +17,59 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-export default "#define SHADER_NAME sign-layer-vertex-shader\n\nattribute vec3 positions;\n\nattribute vec3 instancePositions;\nattribute vec2 instancePositions64xyLow;\nattribute float instanceAngles;\nattribute float instanceSizes;\nattribute vec4 instanceColors;\nattribute vec3 instancePickingColors;\nattribute vec4 instanceIconFrames;\nattribute float instanceColorModes;\nattribute vec2 instanceOffsets;\n\nuniform float sizeScale;\nuniform vec2 iconsTextureDim;\nuniform float render3D;\n\nvarying vec4 vColor;\nvarying vec2 vTextureCoords;\n\nvoid main(void) {\n  // rotation\n  float angle = instanceAngles + PI / 2.0;\n  mat2 rotationMatrix = mat2(\n    cos(angle), sin(angle),\n    -sin(angle), cos(angle)\n  );\n\n  vec2 iconSize = instanceIconFrames.zw;\n  vec2 texCoords = positions.xy;\n  vec2 vertex_offset = (texCoords / 2.0 + instanceOffsets / iconSize) * sizeScale * instanceSizes;\n  vec3 vertex = vec3(\n    vertex_offset.x,\n    vertex_offset.y * (1.0 - render3D),\n    -vertex_offset.y * render3D\n  );\n\n  vec3 offset = project_size(vec3(rotationMatrix * vertex.xy, vertex.z));\n  gl_Position = project_position_to_clipspace(instancePositions, instancePositions64xyLow, offset);\n\n  vTextureCoords = mix(\n    instanceIconFrames.xy,\n    instanceIconFrames.xy + iconSize,\n    (texCoords + 1.0) / 2.0\n  ) / iconsTextureDim;\n\n  vTextureCoords.y = 1.0 - vTextureCoords.y;\n\n  vColor = instanceColors / 255.;\n\n  picking_setPickingColor(instancePickingColors);\n}\n";
+export default `\
+#define SHADER_NAME sign-layer-vertex-shader
+
+attribute vec3 positions;
+
+attribute vec3 instancePositions;
+attribute vec2 instancePositions64xyLow;
+attribute float instanceAngles;
+attribute float instanceSizes;
+attribute vec4 instanceColors;
+attribute vec3 instancePickingColors;
+attribute vec4 instanceIconFrames;
+attribute float instanceColorModes;
+attribute vec2 instanceOffsets;
+
+uniform float sizeScale;
+uniform vec2 iconsTextureDim;
+uniform float render3D;
+
+varying vec4 vColor;
+varying vec2 vTextureCoords;
+
+void main(void) {
+  // rotation
+  float angle = instanceAngles + PI / 2.0;
+  mat2 rotationMatrix = mat2(
+    cos(angle), sin(angle),
+    -sin(angle), cos(angle)
+  );
+
+  vec2 iconSize = instanceIconFrames.zw;
+  vec2 texCoords = positions.xy;
+  vec2 vertex_offset = (texCoords / 2.0 + instanceOffsets / iconSize) * sizeScale * instanceSizes;
+  vec3 vertex = vec3(
+    vertex_offset.x,
+    vertex_offset.y * (1.0 - render3D),
+    -vertex_offset.y * render3D
+  );
+
+  vec3 offset = project_size(vec3(rotationMatrix * vertex.xy, vertex.z));
+  gl_Position = project_position_to_clipspace(instancePositions, instancePositions64xyLow, offset);
+
+  vTextureCoords = mix(
+    instanceIconFrames.xy,
+    instanceIconFrames.xy + iconSize,
+    (texCoords + 1.0) / 2.0
+  ) / iconsTextureDim;
+
+  vTextureCoords.y = 1.0 - vTextureCoords.y;
+
+  vColor = instanceColors / 255.;
+
+  picking_setPickingColor(instancePickingColors);
+}
+`;
 //# sourceMappingURL=sign-layer-vertex.glsl.js.map

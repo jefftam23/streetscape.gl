@@ -1,9 +1,28 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -11,9 +30,9 @@ var _monochrome = require("@streetscape.gl/monochrome");
 
 var _styled = _interopRequireDefault(require("@emotion/styled"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -27,17 +46,17 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var TooltipContainer = _styled["default"].div(function (props) {
+var TooltipContainer = _styled.default.div(function (props) {
   return _objectSpread({}, props.theme.__reset__, {
     position: 'absolute',
     pointerEvents: 'none',
@@ -71,13 +90,13 @@ function (_PureComponent) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(HoverTooltip)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_this), "_renderContent", function (info) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_renderContent", function (info) {
       var objectId = info.object.base && info.object.base.object_id;
-      return [_react["default"].createElement("div", {
+      return [_react.default.createElement("div", {
         key: "-stream-"
-      }, _react["default"].createElement("div", null, _react["default"].createElement("b", null, "stream")), info.layer.props.streamName), objectId ? _react["default"].createElement("div", {
+      }, _react.default.createElement("div", null, _react.default.createElement("b", null, "stream")), info.layer.props.streamName), objectId ? _react.default.createElement("div", {
         key: "-id-"
-      }, _react["default"].createElement("div", null, _react["default"].createElement("b", null, "id")), objectId) : null, _react["default"].createElement("hr", {
+      }, _react.default.createElement("div", null, _react.default.createElement("b", null, "id")), objectId) : null, _react.default.createElement("hr", {
         key: "-separator-"
       })].concat(_this._renderEntries(info.object.base), _this._renderEntries(info.object));
     });
@@ -95,9 +114,9 @@ function (_PureComponent) {
       return Object.keys(object).filter(function (key) {
         return !KEY_BLACKLIST.has(key) && object[key] !== undefined;
       }).map(function (key) {
-        return _react["default"].createElement("div", {
+        return _react.default.createElement("div", {
           key: key
-        }, _react["default"].createElement("div", null, _react["default"].createElement("b", null, key)), String(object[key]));
+        }, _react.default.createElement("div", null, _react.default.createElement("b", null, key)), String(object[key]));
       });
     }
   }, {
@@ -109,7 +128,7 @@ function (_PureComponent) {
           style = _this$props.style,
           _this$props$renderCon = _this$props.renderContent,
           renderContent = _this$props$renderCon === void 0 ? this._renderContent : _this$props$renderCon;
-      return _react["default"].createElement(TooltipContainer, {
+      return _react.default.createElement(TooltipContainer, {
         theme: theme,
         style: {
           left: info.x,
@@ -125,5 +144,5 @@ function (_PureComponent) {
 
 var _default = (0, _monochrome.withTheme)(HoverTooltip);
 
-exports["default"] = _default;
+exports.default = _default;
 //# sourceMappingURL=hover-tooltip.js.map

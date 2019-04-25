@@ -57,13 +57,10 @@ function deleteImage(image) {
 
 
 export default class ImageBuffer {
-  constructor(size) {
-    let _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-        _ref$imageLoader = _ref.imageLoader,
-        imageLoader = _ref$imageLoader === void 0 ? loadImage : _ref$imageLoader,
-        _ref$imageDeleter = _ref.imageDeleter,
-        imageDeleter = _ref$imageDeleter === void 0 ? deleteImage : _ref$imageDeleter;
-
+  constructor(size, {
+    imageLoader = loadImage,
+    imageDeleter = deleteImage
+  } = {}) {
     this.size = size;
     this.imageLoader = imageLoader;
     this.imageDeleter = imageDeleter;

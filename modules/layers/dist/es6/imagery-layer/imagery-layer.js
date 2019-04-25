@@ -35,7 +35,7 @@ function getTexture(gl, src) {
   if (typeof src === 'string') {
     // Url, load the image
     return loadImage(src).then(data => getTextureFromData(gl, data)).catch(error => {
-      throw new Error("Could not load texture from ".concat(src, ": ").concat(error));
+      throw new Error(`Could not load texture from ${src}: ${error}`);
     });
   }
 
@@ -127,10 +127,11 @@ export default class ImageryLayer extends Layer {
     });
   }
 
-  updateState(_ref) {
-    let props = _ref.props,
-        oldProps = _ref.oldProps,
-        changeFlags = _ref.changeFlags;
+  updateState({
+    props,
+    oldProps,
+    changeFlags
+  }) {
     const gl = this.context.gl;
     const model = this.state.model;
     const heightMap = props.heightMap,

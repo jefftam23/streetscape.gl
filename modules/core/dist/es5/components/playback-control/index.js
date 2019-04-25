@@ -1,9 +1,28 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -15,9 +34,9 @@ var _dualPlaybackControl = _interopRequireDefault(require("./dual-playback-contr
 
 var _connect = _interopRequireDefault(require("../connect"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -37,11 +56,11 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -68,16 +87,16 @@ function (_PureComponent) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PlaybackControl)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_this), "state", {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       isPlaying: false,
       timeScale: TIME_SCALES[(0, _parser.getXVIZConfig)().TIMESTAMP_FORMAT] || 1
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_animationFrame", null);
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_animationFrame", null);
 
-    _defineProperty(_assertThisInitialized(_this), "_lastAnimationUpdate", -1);
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_lastAnimationUpdate", -1);
 
-    _defineProperty(_assertThisInitialized(_this), "_onPlay", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onPlay", function () {
       _this.props.onPlay();
 
       _this.setState({
@@ -85,7 +104,7 @@ function (_PureComponent) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_onPause", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onPause", function () {
       _this.props.onPause();
 
       _this.setState({
@@ -93,7 +112,7 @@ function (_PureComponent) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_onSeek", function (timestamp) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onSeek", function (timestamp) {
       _this._onTimeChange(timestamp);
 
       if (_this.state.isPlaying) {
@@ -101,7 +120,7 @@ function (_PureComponent) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_onTimeChange", function (timestamp) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onTimeChange", function (timestamp) {
       var _this$props = _this.props,
           log = _this$props.log,
           onSeek = _this$props.onSeek;
@@ -111,7 +130,7 @@ function (_PureComponent) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_onLookAheadChange", function (lookAhead) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onLookAheadChange", function (lookAhead) {
       var _this$props2 = _this.props,
           log = _this$props2.log,
           onLookAheadChange = _this$props2.onLookAheadChange;
@@ -121,7 +140,7 @@ function (_PureComponent) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_animate", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_animate", function () {
       if (_this.state.isPlaying) {
         var now = Date.now();
         var _this$props3 = _this.props,
@@ -159,7 +178,7 @@ function (_PureComponent) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_formatTime", function (x) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_formatTime", function (x) {
       var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var startTime = _this.props.startTime;
       var timeScale = _this.state.timeScale;
@@ -169,18 +188,18 @@ function (_PureComponent) {
       }
 
       var deltaTimeS = (x - startTime) / timeScale / 1000;
-      return _dualPlaybackControl["default"].formatTimeCode(deltaTimeS, '{mm}:{ss}');
+      return _dualPlaybackControl.default.formatTimeCode(deltaTimeS, '{mm}:{ss}');
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_formatTick", function (x) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_formatTick", function (x) {
       return _this._formatTime(x, _this.props.formatTick);
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_formatTimestamp", function (x) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_formatTimestamp", function (x) {
       return _this._formatTime(x, _this.props.formatTimestamp);
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_formatLookAhead", function (x) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_formatLookAhead", function (x) {
       var formatLookAhead = _this.props.formatLookAhead;
       var timeScale = _this.state.timeScale;
 
@@ -189,7 +208,7 @@ function (_PureComponent) {
       }
 
       var deltaTimeS = x / timeScale / 1000;
-      return _dualPlaybackControl["default"].formatTimeCode(deltaTimeS, '{s}.{S}s');
+      return _dualPlaybackControl.default.formatTimeCode(deltaTimeS, '{s}.{S}s');
     });
 
     return _this;
@@ -242,7 +261,7 @@ function (_PureComponent) {
           endTime: Math.min(r[1], endTime)
         };
       });
-      return _react["default"].createElement(_dualPlaybackControl["default"], _extends({}, otherProps, {
+      return _react.default.createElement(_dualPlaybackControl.default, _extends({}, otherProps, {
         bufferRange: bufferRange,
         currentTime: timestamp,
         lookAhead: lookAhead,
@@ -265,35 +284,35 @@ function (_PureComponent) {
 
 _defineProperty(PlaybackControl, "propTypes", {
   // from log
-  timestamp: _propTypes["default"].number,
-  lookAhead: _propTypes["default"].number,
-  startTime: _propTypes["default"].number,
-  endTime: _propTypes["default"].number,
-  buffered: _propTypes["default"].array,
+  timestamp: _propTypes.default.number,
+  lookAhead: _propTypes.default.number,
+  startTime: _propTypes.default.number,
+  endTime: _propTypes.default.number,
+  buffered: _propTypes.default.array,
   // state override
-  isPlaying: _propTypes["default"].bool,
+  isPlaying: _propTypes.default.bool,
   // config
-  width: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].number]),
-  style: _propTypes["default"].object,
-  compact: _propTypes["default"].bool,
-  className: _propTypes["default"].string,
-  step: _propTypes["default"].number,
-  padding: _propTypes["default"].oneOfType([_propTypes["default"].number, _propTypes["default"].object]),
-  tickSpacing: _propTypes["default"].number,
-  markers: _propTypes["default"].arrayOf(_propTypes["default"].object),
-  formatTick: _propTypes["default"].func,
-  formatTimestamp: _propTypes["default"].func,
+  width: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  style: _propTypes.default.object,
+  compact: _propTypes.default.bool,
+  className: _propTypes.default.string,
+  step: _propTypes.default.number,
+  padding: _propTypes.default.oneOfType([_propTypes.default.number, _propTypes.default.object]),
+  tickSpacing: _propTypes.default.number,
+  markers: _propTypes.default.arrayOf(_propTypes.default.object),
+  formatTick: _propTypes.default.func,
+  formatTimestamp: _propTypes.default.func,
   // dual playback control config
-  maxLookAhead: _propTypes["default"].number,
-  formatLookAhead: _propTypes["default"].func,
+  maxLookAhead: _propTypes.default.number,
+  formatLookAhead: _propTypes.default.func,
   // callbacks
-  onPlay: _propTypes["default"].func,
-  onPause: _propTypes["default"].func,
-  onSeek: _propTypes["default"].func,
-  onLookAheadChange: _propTypes["default"].func
+  onPlay: _propTypes.default.func,
+  onPause: _propTypes.default.func,
+  onSeek: _propTypes.default.func,
+  onLookAheadChange: _propTypes.default.func
 });
 
-_defineProperty(PlaybackControl, "defaultProps", _dualPlaybackControl["default"].defaultProps);
+_defineProperty(PlaybackControl, "defaultProps", _dualPlaybackControl.default.defaultProps);
 
 var getLogState = function getLogState(log) {
   return {
@@ -305,10 +324,10 @@ var getLogState = function getLogState(log) {
   };
 };
 
-var _default = (0, _connect["default"])({
+var _default = (0, _connect.default)({
   getLogState: getLogState,
   Component: PlaybackControl
 });
 
-exports["default"] = _default;
+exports.default = _default;
 //# sourceMappingURL=index.js.map

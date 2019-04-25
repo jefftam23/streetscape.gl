@@ -28,13 +28,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import XVIZLoaderInterface from '../loaders/xviz-loader-interface';
-export default function connectToLog(_ref) {
-  let getLogState = _ref.getLogState,
-      Component = _ref.Component;
-
+export default function connectToLog({
+  getLogState,
+  Component
+}) {
   class WrappedComponent extends PureComponent {
-    constructor() {
-      super(...arguments);
+    constructor(...args) {
+      super(...args);
 
       _defineProperty(this, "state", {
         logVersion: -1

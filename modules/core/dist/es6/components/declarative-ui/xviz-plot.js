@@ -38,8 +38,8 @@ const DATA_LOADING = {
 };
 
 class XVIZPlotComponent extends PureComponent {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
 
     _defineProperty(this, "state", {
       independentVariable: null,
@@ -105,9 +105,10 @@ class XVIZPlotComponent extends PureComponent {
     }
 
     const x = independentVariable[0].values;
-    return variable.map((_ref) => {
-      let id = _ref.id,
-          values = _ref.values;
+    return variable.map(({
+      id,
+      values
+    }) => {
       return {
         id,
         values: values.map((v, k) => [x[k], v])
@@ -131,10 +132,11 @@ class XVIZPlotComponent extends PureComponent {
       const variable = dependentVariables[streamName];
 
       if (variable) {
-        variable.forEach((_ref2, i) => {
-          let id = _ref2.id,
-              values = _ref2.values;
-          data["".concat(streamName, "-").concat(id || i)] = values;
+        variable.forEach(({
+          id,
+          values
+        }, i) => {
+          data[`${streamName}-${id || i}`] = values;
         });
       }
     }

@@ -1,9 +1,28 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -13,7 +32,7 @@ var _monochrome = require("@streetscape.gl/monochrome");
 
 var _styled = _interopRequireDefault(require("@emotion/styled"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -75,7 +94,7 @@ var ANCHOR_POSITION = {
   }
 };
 
-var PopupTip = _styled["default"].div(function (props) {
+var PopupTip = _styled.default.div(function (props) {
   return _objectSpread({
     position: 'absolute',
     width: 4,
@@ -86,7 +105,7 @@ var PopupTip = _styled["default"].div(function (props) {
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var PopupLine = _styled["default"].div(function (props) {
+var PopupLine = _styled.default.div(function (props) {
   return _objectSpread({
     position: 'absolute',
     borderLeftStyle: 'solid',
@@ -95,7 +114,7 @@ var PopupLine = _styled["default"].div(function (props) {
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var PopupContent = _styled["default"].div(function (props) {
+var PopupContent = _styled.default.div(function (props) {
   return _objectSpread({}, props.theme.__reset__, {
     background: props.color
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
@@ -174,15 +193,15 @@ function (_Popup) {
           tipLineStyle.height = '100%';
       }
 
-      return _react["default"].createElement("div", {
+      return _react.default.createElement("div", {
         key: "tip",
         className: "mapboxgl-popup-tip",
         style: tipStyle
-      }, _react["default"].createElement(PopupTip, _extends({
+      }, _react.default.createElement(PopupTip, _extends({
         style: tipCircleStyle
       }, styleProps, {
         userStyle: style.objectLabelTip
-      })), _react["default"].createElement(PopupLine, _extends({
+      })), _react.default.createElement(PopupLine, _extends({
         style: tipLineStyle
       }, styleProps, {
         userStyle: style.objectLabelLine
@@ -195,7 +214,7 @@ function (_Popup) {
           theme = _this$props2.theme,
           styleProps = _this$props2.styleProps,
           style = _this$props2.style;
-      return _react["default"].createElement(PopupContent, _extends({
+      return _react.default.createElement(PopupContent, _extends({
         key: "content",
         ref: this._contentLoaded,
         className: "mapboxgl-popup-content",
@@ -212,5 +231,5 @@ function (_Popup) {
 
 var _default = (0, _monochrome.withTheme)(PerspectivePopup);
 
-exports["default"] = _default;
+exports.default = _default;
 //# sourceMappingURL=perspective-popup.js.map

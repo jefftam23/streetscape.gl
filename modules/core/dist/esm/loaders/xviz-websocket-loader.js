@@ -1,3 +1,22 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -8,8 +27,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
 
 function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
@@ -19,6 +36,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -88,7 +107,7 @@ function (_XVIZLoaderInterface) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(XVIZWebsocketLoader).call(this, options));
 
-    _defineProperty(_assertThisInitialized(_this), "_onWSOpen", function () {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onWSOpen", function () {
       // Request data if we are restarting, otherwise wait for metadata
       // TODO - protocol negotiation
       _this.xvizHandler = new XVIZController(_this.socket);
@@ -98,12 +117,12 @@ function (_XVIZLoaderInterface) {
       _this._onOpen();
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_onWSClose", function (event) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onWSClose", function (event) {
       // Only called on connection closure, which would be an error case
       _this._debug('socket_closed', event);
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_onWSError", function (event) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_onWSError", function (event) {
       _this._debug('socket_error', event);
     });
 
@@ -184,7 +203,7 @@ function (_XVIZLoaderInterface) {
           } catch (err) {
             reject(err);
           }
-        })["catch"](function (event) {
+        }).catch(function (event) {
           _this2._onWSError(event);
 
           var isAbnormalClosure = event.code > 1000 && event.code !== 1005; // Retry if abnormal or connection never established
@@ -193,7 +212,7 @@ function (_XVIZLoaderInterface) {
             retry();
           }
         });
-      }, this.retrySettings)["catch"](this._onWSError);
+      }, this.retrySettings).catch(this._onWSError);
     }
   }, {
     key: "close",

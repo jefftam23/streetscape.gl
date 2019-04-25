@@ -53,8 +53,7 @@ export default class XVIZWebsocketLoader extends XVIZLoaderInterface {
    * @params timestamp {number, optional}
    * @params bufferLength {number, optional}
    */
-  constructor() {
-    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  constructor(options = {}) {
     super(options);
 
     _defineProperty(this, "_onWSOpen", () => {

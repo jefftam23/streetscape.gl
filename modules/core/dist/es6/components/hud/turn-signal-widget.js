@@ -38,12 +38,13 @@ const ArrowComponent = styled.svg(props => _objectSpread({
   fill: props.isOn ? props.theme.textColorPrimary : props.theme.controlColorDisabled
 }, evaluateStyle(props.userStyle, props)));
 export default class TurnSignalWidget extends PureComponent {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
 
-    _defineProperty(this, "_render", (_ref) => {
-      let theme = _ref.theme,
-          streams = _ref.streams;
+    _defineProperty(this, "_render", ({
+      theme,
+      streams
+    }) => {
       const _this$props = this.props,
             transformValue = _this$props.transformValue,
             style = _this$props.style;

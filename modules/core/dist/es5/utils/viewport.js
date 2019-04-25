@@ -1,3 +1,22 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11,7 +30,7 @@ var _viewportMercatorProject = _interopRequireDefault(require("viewport-mercator
 
 var _core = require("@deck.gl/core");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -30,10 +49,10 @@ function getViewStateOffset(oldViewState, viewState, oldOffset) {
     return oldOffset;
   }
 
-  var oldViewport = new _viewportMercatorProject["default"](oldViewState);
+  var oldViewport = new _viewportMercatorProject.default(oldViewState);
   var oldPos = [oldViewport.width / 2 + oldOffset.x, oldViewport.height / 2 + oldOffset.y];
   var trackedLngLat = oldViewport.unproject(oldPos);
-  var newViewport = new _viewportMercatorProject["default"](viewState);
+  var newViewport = new _viewportMercatorProject.default(viewState);
   var newPos = newViewport.project(trackedLngLat);
   return {
     x: oldOffset.x + newPos[0] - oldPos[0],
@@ -48,7 +67,7 @@ function offsetViewState(viewState, offset) {
     bearing: viewState.bearing + offset.bearing
   });
 
-  var helperViewport = new _viewportMercatorProject["default"](shiftedViewState);
+  var helperViewport = new _viewportMercatorProject.default(shiftedViewState);
   var pos = [viewState.width / 2 + offset.x, viewState.height / 2 + offset.y];
   var lngLat = [viewState.longitude, viewState.latitude];
 

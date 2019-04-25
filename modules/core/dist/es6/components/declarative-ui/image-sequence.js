@@ -40,9 +40,10 @@ export default class ImageSequence extends PureComponent {
       }
     });
 
-    _defineProperty(this, "_onCanvasResize", (_ref) => {
-      let width = _ref.width,
-          height = _ref.height;
+    _defineProperty(this, "_onCanvasResize", ({
+      width,
+      height
+    }) => {
       this.setState({
         width,
         height
@@ -55,7 +56,11 @@ export default class ImageSequence extends PureComponent {
             contrast = _this$props.contrast,
             saturate = _this$props.saturate,
             invert = _this$props.invert;
-      const filter = "      ".concat(Number.isFinite(brightness) ? "brightness(".concat(brightness, ") ") : '', "      ").concat(Number.isFinite(saturate) ? "saturate(".concat(saturate, ") ") : '', "      ").concat(Number.isFinite(contrast) ? "contrast(".concat(contrast, ") ") : '', "      ").concat(Number.isFinite(invert) ? "invert(".concat(invert, ") ") : '');
+      const filter = `\
+      ${Number.isFinite(brightness) ? `brightness(${brightness}) ` : ''}\
+      ${Number.isFinite(saturate) ? `saturate(${saturate}) ` : ''}\
+      ${Number.isFinite(contrast) ? `contrast(${contrast}) ` : ''}\
+      ${Number.isFinite(invert) ? `invert(${invert}) ` : ''}`;
       return filter;
     });
 

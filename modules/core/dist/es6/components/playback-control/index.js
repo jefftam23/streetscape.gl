@@ -38,11 +38,8 @@ const TIME_SCALES = {
 };
 
 class PlaybackControl extends PureComponent {
-  constructor() {
-    var _this;
-
-    super(...arguments);
-    _this = this;
+  constructor(...args) {
+    super(...args);
 
     _defineProperty(this, "state", {
       isPlaying: false,
@@ -131,10 +128,9 @@ class PlaybackControl extends PureComponent {
       }
     });
 
-    _defineProperty(this, "_formatTime", function (x) {
-      let formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      const startTime = _this.props.startTime;
-      const timeScale = _this.state.timeScale;
+    _defineProperty(this, "_formatTime", (x, formatter = null) => {
+      const startTime = this.props.startTime;
+      const timeScale = this.state.timeScale;
 
       if (formatter) {
         return formatter(x, startTime);

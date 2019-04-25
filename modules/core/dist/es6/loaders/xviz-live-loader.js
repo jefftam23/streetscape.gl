@@ -41,9 +41,9 @@ function getSocketRequestParams(options) {
   });
 
   const retryAttempts = Number.isInteger(serverConfig.retryAttempts) ? serverConfig.retryAttempts : DEFAULT_RETRY_ATTEMPTS;
-  const qs = Object.keys(queryParams).map(key => "".concat(key, "=").concat(queryParams[key])).join('&');
+  const qs = Object.keys(queryParams).map(key => `${key}=${queryParams[key]}`).join('&');
   return {
-    url: "".concat(serverConfig.serverUrl, "?").concat(qs),
+    url: `${serverConfig.serverUrl}?${qs}`,
     logProfile,
     bufferLength,
     retryAttempts,
@@ -72,8 +72,7 @@ export default class XVIZLiveLoader extends XVIZWebsocketLoader {
    * @params logProfile {string, optional}
    * @params bufferLength {number, optional}
    */
-  constructor() {
-    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  constructor(options = {}) {
     super(options); // Construct websocket connection details from parameters
 
     _defineProperty(this, "_onOpen", () => {});

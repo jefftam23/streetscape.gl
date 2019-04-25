@@ -1,9 +1,28 @@
+// Copyright (c) 2019 Uber Technologies, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -17,9 +36,9 @@ var _math = require("math.gl");
 
 var _baseWidget = _interopRequireDefault(require("./base-widget"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -33,36 +52,36 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var GuageArc = _styled["default"].path(function (props) {
+var GuageArc = _styled.default.path(function (props) {
   return _objectSpread({
     stroke: props.theme.controlColorDisabled,
     strokeCap: 'round'
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var ZeroMarker = _styled["default"].circle(function (props) {
+var ZeroMarker = _styled.default.circle(function (props) {
   return _objectSpread({
     fill: props.theme.textColorPrimary
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var CmdMarker = _styled["default"].path(function (props) {
+var CmdMarker = _styled.default.path(function (props) {
   return _objectSpread({
     fill: props.theme.controlColorActive
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var GuageHand = _styled["default"].line(function (props) {
+var GuageHand = _styled.default.line(function (props) {
   return _objectSpread({
     stroke: props.theme.textColorPrimary,
     strokeCap: 'round',
@@ -70,7 +89,7 @@ var GuageHand = _styled["default"].line(function (props) {
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var CmdValue = _styled["default"].div(function (props) {
+var CmdValue = _styled.default.div(function (props) {
   return _objectSpread({
     textAlign: 'right',
     flex: 1,
@@ -84,7 +103,7 @@ var CmdValue = _styled["default"].div(function (props) {
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var MsrValue = _styled["default"].div(function (props) {
+var MsrValue = _styled.default.div(function (props) {
   return _objectSpread({
     textAlign: props.isOnlyValue ? 'center' : 'left',
     flex: 1,
@@ -95,7 +114,7 @@ var MsrValue = _styled["default"].div(function (props) {
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var LabelComponent = _styled["default"].div(function (props) {
+var LabelComponent = _styled.default.div(function (props) {
   return _objectSpread({
     fontSize: props.theme.fontSize,
     color: props.theme.textColorSecondary,
@@ -103,7 +122,7 @@ var LabelComponent = _styled["default"].div(function (props) {
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var UnitsComponent = _styled["default"].div(function (props) {
+var UnitsComponent = _styled.default.div(function (props) {
   return _objectSpread({
     textAlign: 'center',
     fontSize: props.theme.fontSize * 0.9,
@@ -111,7 +130,7 @@ var UnitsComponent = _styled["default"].div(function (props) {
   }, (0, _monochrome.evaluateStyle)(props.userStyle, props));
 });
 
-var Warning = _styled["default"].span(function (props) {
+var Warning = _styled.default.span(function (props) {
   return _objectSpread({
     position: 'absolute',
     marginLeft: props.theme.spacingTiny,
@@ -159,10 +178,10 @@ function (_PureComponent) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(MeterWidget)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_this), "_render", function (_ref) {
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_render", function (_ref) {
       var theme = _ref.theme,
           streams = _ref.streams;
-      return _react["default"].createElement("div", null, _this._renderGauge(streams.cmd, streams.msr, theme), _this._renderMetric(streams.cmd, streams.msr, theme));
+      return _react.default.createElement("div", null, _this._renderGauge(streams.cmd, streams.msr, theme), _this._renderMetric(streams.cmd, streams.msr, theme));
     });
 
     return _this;
@@ -194,33 +213,33 @@ function (_PureComponent) {
       var msrTransform = getTransform(r + padding, r + padding, msr * 180 - 90);
       var cmdTransform = getTransform(r + padding, r + padding, cmd * 180 - 90);
       var zeroTransform = getTransform(r + padding, r + padding, zero * 180 - 90);
-      return _react["default"].createElement("svg", {
+      return _react.default.createElement("svg", {
         width: (r + padding) * 2,
         height: r + padding * 2
-      }, _react["default"].createElement(GuageArc, {
+      }, _react.default.createElement(GuageArc, {
         d: "M ".concat(padding + w / 2, " ").concat(r + padding, " a ").concat(r - w / 2, " ").concat(r - w / 2, " 1 1 1 ").concat(r * 2 - w, " 0"),
         fill: "none",
         strokeWidth: w,
         theme: theme,
         userStyle: style.arc
-      }), _react["default"].createElement("g", {
+      }), _react.default.createElement("g", {
         transform: zeroTransform
-      }, _react["default"].createElement(ZeroMarker, {
+      }, _react.default.createElement(ZeroMarker, {
         cx: r + padding,
         cy: padding - 4,
         r: 2,
         theme: theme,
         userStyle: style.zeroMarker
-      })), cmdData && _react["default"].createElement("g", {
+      })), cmdData && _react.default.createElement("g", {
         transform: cmdTransform
-      }, _react["default"].createElement(CmdMarker, {
+      }, _react.default.createElement(CmdMarker, {
         transform: "translate(".concat(r + padding, " ").concat(padding, ")"),
         d: "M0,".concat(w, " L").concat(-w / 2, ",0 L").concat(w / 2, ",0z"),
         theme: theme,
         userStyle: style.cmdMarker
-      })), msrData && _react["default"].createElement("g", {
+      })), msrData && _react.default.createElement("g", {
         transform: msrTransform
-      }, _react["default"].createElement(GuageHand, {
+      }, _react.default.createElement(GuageHand, {
         x1: r + padding,
         y1: r + padding,
         x2: r + padding,
@@ -244,31 +263,31 @@ function (_PureComponent) {
       var msrValue = msrData.data && msrData.data.variable;
       var cmdWarning = getWarning(cmdValue);
       var msrWarning = getWarning(msrValue);
-      return _react["default"].createElement("div", null, _react["default"].createElement("div", {
+      return _react.default.createElement("div", null, _react.default.createElement("div", {
         style: {
           display: 'flex'
         }
-      }, cmdData && _react["default"].createElement(CmdValue, {
+      }, cmdData && _react.default.createElement(CmdValue, {
         theme: theme,
         warning: cmdWarning,
         userStyle: style.cmdValue
-      }, _react["default"].createElement(LabelComponent, {
+      }, _react.default.createElement(LabelComponent, {
         theme: theme,
         warning: cmdWarning,
         userStyle: style.label
-      }, "Cmd."), _react["default"].createElement("div", null, formatValue(cmdValue, precision, transformValue) || '-')), _react["default"].createElement(MsrValue, {
+      }, "Cmd."), _react.default.createElement("div", null, formatValue(cmdValue, precision, transformValue) || '-')), _react.default.createElement(MsrValue, {
         theme: theme,
         warning: msrWarning,
         isOnlyValue: !cmdData,
         userStyle: style.msrValue
-      }, _react["default"].createElement(LabelComponent, {
+      }, _react.default.createElement(LabelComponent, {
         theme: theme,
         warning: msrWarning,
         userStyle: style.label
-      }, label), _react["default"].createElement("div", null, formatValue(msrValue, precision, transformValue) || '-'))), _react["default"].createElement(UnitsComponent, {
+      }, label), _react.default.createElement("div", null, formatValue(msrValue, precision, transformValue) || '-'))), _react.default.createElement(UnitsComponent, {
         theme: theme,
         userStyle: style.units
-      }, units, (cmdWarning || msrWarning) && _react["default"].createElement(Warning, {
+      }, units, (cmdWarning || msrWarning) && _react.default.createElement(Warning, {
         theme: theme,
         userStyle: style.warning
       }, cmdWarning || msrWarning)));
@@ -281,7 +300,7 @@ function (_PureComponent) {
           style = _this$props3.style,
           cmdStreamName = _this$props3.cmdStreamName,
           streamName = _this$props3.streamName;
-      return _react["default"].createElement(_baseWidget["default"], {
+      return _react.default.createElement(_baseWidget.default, {
         log: log,
         style: style,
         streamNames: {
@@ -295,20 +314,20 @@ function (_PureComponent) {
   return MeterWidget;
 }(_react.PureComponent);
 
-exports["default"] = MeterWidget;
+exports.default = MeterWidget;
 
 _defineProperty(MeterWidget, "propTypes", {
-  log: _propTypes["default"].object.isRequired,
-  style: _propTypes["default"].object,
-  precision: _propTypes["default"].number,
-  units: _propTypes["default"].string,
-  cmdStreamName: _propTypes["default"].string,
-  streamName: _propTypes["default"].string.isRequired,
-  label: _propTypes["default"].string,
-  min: _propTypes["default"].number.isRequired,
-  max: _propTypes["default"].number.isRequired,
-  transformValue: _propTypes["default"].func,
-  getWarning: _propTypes["default"].func
+  log: _propTypes.default.object.isRequired,
+  style: _propTypes.default.object,
+  precision: _propTypes.default.number,
+  units: _propTypes.default.string,
+  cmdStreamName: _propTypes.default.string,
+  streamName: _propTypes.default.string.isRequired,
+  label: _propTypes.default.string,
+  min: _propTypes.default.number.isRequired,
+  max: _propTypes.default.number.isRequired,
+  transformValue: _propTypes.default.func,
+  getWarning: _propTypes.default.func
 });
 
 _defineProperty(MeterWidget, "defaultProps", {

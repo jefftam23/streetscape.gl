@@ -24,9 +24,8 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 import GL from '@luma.gl/constants';
 import { Geometry } from '@luma.gl/core';
 export default class GridGeometry extends Geometry {
-  constructor() {
-    let _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        _ref$id = _ref.id,
+  constructor(_ref = {}) {
+    let _ref$id = _ref.id,
         id = _ref$id === void 0 ? uid('grid-geometry') : _ref$id,
         _ref$uCount = _ref.uCount,
         uCount = _ref$uCount === void 0 ? 1 : _ref$uCount,
@@ -60,16 +59,16 @@ const uidCounters = {};
  * @return {number} uid
  **/
 
-function uid() {
-  let id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'id';
+function uid(id = 'id') {
   uidCounters[id] = uidCounters[id] || 1;
   const count = uidCounters[id]++;
-  return "".concat(id, "-").concat(count);
+  return `${id}-${count}`;
 }
 
-function calculateIndices(_ref2) {
-  let uCount = _ref2.uCount,
-      vCount = _ref2.vCount;
+function calculateIndices({
+  uCount,
+  vCount
+}) {
   // # of squares = (nx - 1) * (ny - 1)
   // # of triangles = squares * 2
   // # of indices = triangles * 3
@@ -103,9 +102,10 @@ function calculateIndices(_ref2) {
   return indices;
 }
 
-function calculateTexCoords(_ref3) {
-  let uCount = _ref3.uCount,
-      vCount = _ref3.vCount;
+function calculateTexCoords({
+  uCount,
+  vCount
+}) {
   const texCoords = new Float32Array((uCount + 1) * (vCount + 1) * 2);
   let i = 0;
 

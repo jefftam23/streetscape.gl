@@ -20,11 +20,7 @@
 import { createSelector } from 'reselect'; // reselect selectors do not update if called with the same arguments
 // to support calling them without arguments, pass logLoader version
 
-export default function createLogSelector(logLoader) {
-  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    args[_key - 1] = arguments[_key];
-  }
-
+export default function createLogSelector(logLoader, ...args) {
   const selector = createSelector(...args);
   return () => selector(logLoader._version);
 }

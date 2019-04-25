@@ -17,5 +17,76 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-export default "#define SHADER_NAME point-cloud-layer-vertex-shader\n\nattribute vec3 positions;\nattribute vec4 instanceColors;\nattribute vec3 instancePositions;\nattribute vec2 instancePositions64xyLow;\nattribute vec3 instancePickingColors;\n\nuniform float colorSize;\nuniform float opacity;\nuniform float pointSize;\nuniform float colorMode;\nuniform vec2 colorDomain;\nuniform mat4 vehicleDistanceTransform;\n\nvarying vec4 vColor;\nvarying vec2 unitPosition;\n\nconst float COLOR_MODE_INLINE = 0.0;\nconst float COLOR_MODE_Z = 1.0;\nconst float COLOR_MODE_DISTANCE = 2.0;\nconst float ONE_THIRD = 1.0 / 3.0;\nconst float TWO_THIRD = 2.0 / 3.0;\nconst float ONE_SIXTH = 1.0 / 6.0;\n\n// http://en.wikipedia.org/wiki/HSL_and_HSV#Converting_to_RGB\n// s = 1.0, l = 0.5\nfloat hue(float t) {\n  t = t + step(t, 0.0) - step(1.0, t);\n  if (t < ONE_SIXTH) return 6.0 * t;\n  if (t < 0.5) return 1.0;\n  if (t < TWO_THIRD) return 4.0 - t * 6.0;\n  return 0.0;\n}\n\nvec3 distToRgb(float dist) {\n  float h = (dist - colorDomain.x) / (colorDomain.y - colorDomain.x);\n  h = clamp(h, 0.0, 1.0);\n  h = mix(0.5, 0.0, h);\n\n  return vec3(\n    hue(h + ONE_THIRD),\n    hue(h),\n    hue(h - ONE_THIRD)\n  );\n}\n\nvoid main(void) {\n  // position on the containing square in [-1, 1] space\n  unitPosition = positions.xy;\n\n  // Find the center of the point and add the current vertex\n  gl_Position = project_position_to_clipspace(instancePositions, instancePositions64xyLow, vec3(0.));\n  gl_Position.xy += project_pixel_size_to_clipspace(positions.xy * pointSize) * project_uFocalDistance;\n\n  vec4 colorPosition;\n  if (colorMode == COLOR_MODE_DISTANCE) {\n    colorPosition = vehicleDistanceTransform * vec4(instancePositions, 1.0);\n    vColor = vec4(distToRgb(length(colorPosition.xyz)), opacity);\n  } else if (colorMode == COLOR_MODE_Z) {\n    colorPosition = project_uModelMatrix * vec4(instancePositions, 1.0);\n    vColor = vec4(distToRgb(colorPosition.z), opacity);\n  } else {\n    float alpha = colorSize == 3.0 ? 255. : instanceColors.a;\n    vColor = vec4(instanceColors.rgb, alpha * opacity) / 255.;\n  }\n\n  // Set color to be rendered to picking fbo (also used to check for selection highlight).\n  picking_setPickingColor(instancePickingColors);\n}\n";
+export default `\
+#define SHADER_NAME point-cloud-layer-vertex-shader
+
+attribute vec3 positions;
+attribute vec4 instanceColors;
+attribute vec3 instancePositions;
+attribute vec2 instancePositions64xyLow;
+attribute vec3 instancePickingColors;
+
+uniform float colorSize;
+uniform float opacity;
+uniform float pointSize;
+uniform float colorMode;
+uniform vec2 colorDomain;
+uniform mat4 vehicleDistanceTransform;
+
+varying vec4 vColor;
+varying vec2 unitPosition;
+
+const float COLOR_MODE_INLINE = 0.0;
+const float COLOR_MODE_Z = 1.0;
+const float COLOR_MODE_DISTANCE = 2.0;
+const float ONE_THIRD = 1.0 / 3.0;
+const float TWO_THIRD = 2.0 / 3.0;
+const float ONE_SIXTH = 1.0 / 6.0;
+
+// http://en.wikipedia.org/wiki/HSL_and_HSV#Converting_to_RGB
+// s = 1.0, l = 0.5
+float hue(float t) {
+  t = t + step(t, 0.0) - step(1.0, t);
+  if (t < ONE_SIXTH) return 6.0 * t;
+  if (t < 0.5) return 1.0;
+  if (t < TWO_THIRD) return 4.0 - t * 6.0;
+  return 0.0;
+}
+
+vec3 distToRgb(float dist) {
+  float h = (dist - colorDomain.x) / (colorDomain.y - colorDomain.x);
+  h = clamp(h, 0.0, 1.0);
+  h = mix(0.5, 0.0, h);
+
+  return vec3(
+    hue(h + ONE_THIRD),
+    hue(h),
+    hue(h - ONE_THIRD)
+  );
+}
+
+void main(void) {
+  // position on the containing square in [-1, 1] space
+  unitPosition = positions.xy;
+
+  // Find the center of the point and add the current vertex
+  gl_Position = project_position_to_clipspace(instancePositions, instancePositions64xyLow, vec3(0.));
+  gl_Position.xy += project_pixel_size_to_clipspace(positions.xy * pointSize) * project_uFocalDistance;
+
+  vec4 colorPosition;
+  if (colorMode == COLOR_MODE_DISTANCE) {
+    colorPosition = vehicleDistanceTransform * vec4(instancePositions, 1.0);
+    vColor = vec4(distToRgb(length(colorPosition.xyz)), opacity);
+  } else if (colorMode == COLOR_MODE_Z) {
+    colorPosition = project_uModelMatrix * vec4(instancePositions, 1.0);
+    vColor = vec4(distToRgb(colorPosition.z), opacity);
+  } else {
+    float alpha = colorSize == 3.0 ? 255. : instanceColors.a;
+    vColor = vec4(instanceColors.rgb, alpha * opacity) / 255.;
+  }
+
+  // Set color to be rendered to picking fbo (also used to check for selection highlight).
+  picking_setPickingColor(instancePickingColors);
+}
+`;
 //# sourceMappingURL=point-cloud-layer-vertex.glsl.js.map

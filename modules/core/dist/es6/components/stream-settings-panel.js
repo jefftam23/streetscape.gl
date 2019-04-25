@@ -28,7 +28,7 @@ import styled from '@emotion/styled';
 import connectToLog from './connect';
 const Badge = styled.div(props => _objectSpread({
   '&:before': {
-    content: "\"".concat(props.type || '', "\"")
+    content: `"${props.type || ''}"`
   }
 }, evaluateStyle(props.userStyle, props)));
 

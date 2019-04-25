@@ -44,17 +44,16 @@ export default class XVIZControllerV2 {
 
   _send(type, message) {
     const msg = {
-      type: "xviz/".concat(type),
+      type: `xviz/${type}`,
       data: message
     };
     this.socket.send(JSON.stringify(msg));
   }
 
-  transformLog() {
-    let _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        startTimestamp = _ref.startTimestamp,
-        endTimestamp = _ref.endTimestamp;
-
+  transformLog({
+    startTimestamp,
+    endTimestamp
+  } = {}) {
     const msg = {};
 
     if (startTimestamp) {
@@ -66,7 +65,7 @@ export default class XVIZControllerV2 {
     } // Add in a sequential id
 
 
-    msg.id = "".concat(this.transformCounter);
+    msg.id = `${this.transformCounter}`;
     this.transformCounter++;
 
     this._send('transform_log', msg);

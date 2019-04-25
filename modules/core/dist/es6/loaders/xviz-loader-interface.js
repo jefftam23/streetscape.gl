@@ -28,9 +28,7 @@ import stats from '../utils/stats';
 /* eslint-disable callback-return */
 
 export default class XVIZLoaderInterface {
-  constructor() {
-    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
+  constructor(options = {}) {
     _defineProperty(this, "onXVIZMessage", message => {
       switch (message.type) {
         case LOG_STREAM_MESSAGE.METADATA:
@@ -163,7 +161,7 @@ export default class XVIZLoaderInterface {
       }
     }
 
-    stats.get("loader-".concat(eventType)).incrementCount();
+    stats.get(`loader-${eventType}`).incrementCount();
   }
 
   subscribe(instance) {
